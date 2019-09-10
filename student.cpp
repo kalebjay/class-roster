@@ -89,11 +89,17 @@ virtual void student::print(); {
 }
 
 virtual void student::getDegreeProgram() {
-
-
+	// 2f from instructions
+	// left blank to be overiden by other functions of subclasses 
+	//       NetworkStudent, SecurityStudent, and SoftwareStudent
+	return;
 }
 
-
+//destructor
+student::~student() {
+	delete numDayCompCrs[];
+	return;
+}
 
 
 

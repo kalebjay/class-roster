@@ -6,15 +6,14 @@ using namespace std;
 #include "degree.h"
 #include "student.h"
 
-class student::SecurityStudent {
+class NetworkStudent : public student {
 public:
 	void setDegreeType(string toSetDegreeType);
 	string GetDegreeType() const;
 	virtual getDegreeProgram();
-
 private:
 	string degreeType;
-};
+}
 
 
 

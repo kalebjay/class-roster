@@ -6,7 +6,7 @@ using namespace std;
 #include "degree.h"
 #include "student.h"
 
-class student::SecurityStudent {
+class student::SoftwareStudent {
 public:
 	void setDegreeType(string toSetDegreeType);
 	string GetDegreeType() const;
@@ -15,7 +15,3 @@ public:
 private:
 	string degreeType;
 };
-
-
-
-
