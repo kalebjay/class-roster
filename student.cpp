@@ -97,7 +97,7 @@ virtual void student::getDegreeProgram() {
 
 //destructor
 student::~student() {
-	delete numDayCompCrs[];
+	delete classRosterArray;
 	return;
 }
 

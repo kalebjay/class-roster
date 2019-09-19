@@ -31,7 +31,9 @@ private:
 	string lastName;
 	string emailAddress;
 	int age;
-	int* numDayCompCrs[];
+	int daysInCourse1;
+	int daysInCourse2;
+	int daysInCourse3;
 	string degreeType;
 
 };
