@@ -4,7 +4,6 @@
 #include <sstream>
 using namespace std;
 
-#include "degree.h"
 #include "student.h"
 #include "SecurityStudent.h"
 #include "NetworkStudent.h"
@@ -14,7 +13,9 @@ using namespace std;
 void roster::add(string studentID, string firstName, string lastName, string emailAddress, 
 	int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeType) {
 	//needs to set the instance variables from part D1 and updates the roster.
-
+	//switch or if for Degree to create 
+	// create for loop that goes through the size of the classRosterArray and if null ptr do security student for SECURITY etc
+	// default, convert days in course from array to 3 integers, 
 
 	return;
 }
@@ -32,14 +33,16 @@ void roster::remove(string studentID) {
 }
 
 void roster::printAll() {
-	/*
+	/*loop that prints every student, calls print function on each student
 	prints a complete tab-separated list of student data using accessor functions 
 	with the provided format: 
-	1 [tab] First Name: John [tab] Last Name: Smith [tab] 
-	Age: 20 [tab]daysInCourse: {35, 40, 55} Degree Program: Security. 
+	 
 	The printAll() function should loop through all  the students in classRosterArray 
 	and call the print() function for each student.
 	*/
+	for (int i = 0, i < sizeof(classRosterArray), i++) {
+		student.print();
+	}
 
 	return;
 }
@@ -99,18 +102,7 @@ Must acheive the following results:
 5.  Call the destructor to release the Roster memory.
 */
 	
-	string studentID;
-	string firstName;
-	string lastName;
-	string emailAddress;
-	int age;
-	int daysInCourse1 = 0;
-	int daysInCourse2 = 0;
-	int daysInCourse3 = 0;
-	string degreeType;
-	int i = 0;
-	char* classRosterArray[];
-	istringstream inSS(classRosterArray);
+	Roster classRoster;
 
 	const string studentData[] = { 
 	"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
@@ -119,29 +111,33 @@ Must acheive the following results:
 	"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
 	"A5,Kaleb,Chatland,kalebjay@gmail.com,32,20,33,19,SOFTWARE"
 	}
-    
-	roster * studentData[5];
-	roster * classRosterArray;
 	
-	// would this work instead of for loop?? classRosterArray = &studentData[];
-	
-	for (i = 0, i < studentData.length, i++) {
-		inSS >> studentID;
-		inSS >> firstName;
-		inSS >> lastName;
-		inSS >> emailAddress;
-		inSS >> age;
-		inSS >> daysInCourse1;
-		inSS >> daysInCourse2;
-		inSS >> daysInCourse3;
-		inSS >> degreeType;
-	}
+	for (int i = 0, i < sizeof(studentData), i++) {
+		
+		Degree degreeType;
+		istringstream iss(studentData[i]);
+		string currentString;
+		string tempArr[8];
+		int count = 0;
+		
+		while(getline(iss, currentString, ',')){
+			tempArr[count] = currentString;
+			count++;
+		}
+		if (tempArr[8] == "SECURITY") {
+			degreeType = SECURITY;
+		}
+		else if (tempArr[8] == "NETWORKING") {
+			degreeType = NETWORKWING;
+		}
+		else if (tempArr[8] == "SOFTWARE") {
+			degreeType = SOFTWARE;
+		}
+		// 0 = studentID, 1 = firstName, 2 = lastName, 3 = emailAddress,
+		// 4 = age, 5 = daysInCourse1, 6 = daysInCourse2, 7 = daysInCourse3, 8 = degreeType
+		classRoster.add(tempArr[0], tempArr[1], tempArr[2], tempArr[3], tempArr[4], tempArr[5], tempArr[6], tempArr[7], tempArr[8]);
+		
 
-	for (i = 0, i < 5, i++) {
-		classRosterArray = new roster;
-		classRosterArray->add(string studentID, string firstName, string lastName, string emailAddress,
-			int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeType);
-		studentData[5] = classRosterArray;
 	}
 
 	classRoster.printAll();
@@ -154,7 +150,7 @@ Must acheive the following results:
 	classRoster.remove("A3");
 	//expected: the above line should print a message saying such a student with this ID was not found.
 
-	delete classRosterArray;
+	
 
 	return;
 }

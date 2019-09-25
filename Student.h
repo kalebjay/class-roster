@@ -1,40 +1,39 @@
 #pragma once
-#include <iostream>
 #include <string>
-using namespace std;
-
 #include "degree.h"
 
-class student {
+class Student {
 public:
-	void SetStudentID(string studentIDToSet);
-	void SetFirstName(string firstNameToSet);
-	void SetLastName(string lastNameToSet);
-	void SetEmailAddress(string emailAddressToSet);
-	void SetAge(int ageToSet);
-	void SetNumDayCompCrs(int numberOfDaysToCompleteCourse);
-	void SetDegreeType(string degreeTypeToSet);
+	//Setters
+	void SetStudentID(string studentID);
+	void SetFirstName(string firstName);
+	void SetLastName(string lastName);
+	void SetEmailAddress(string email);
+	void SetAge(int age);
+	void SetNumDayCompCrs(int* days);
+	void SetDegreeType(Degree degreeType);
+	//Getters
 	string GetStudentID() const;
 	string GetFirstName() const;
 	string GetLastName() const;
 	string GetEmailAddress() const;
 	int GetAge() const;
-	int GetnumDayCompCrs() const;
-	string GetDegreeType() const;
-	virtual print();
-	virtual getDegreeProgram();
-	~student();
+	int* GetNumDayCompCrs() const;
+	Degree GetDegreeType() const;
+	
+	Student(string studentID, string firstName, string lastName, string email, int age, int* days, Degree degreeType);
+	virtual void print();
+	virtual Degree getDegreeProgram();
+	~Student();
 
 private:
 	string studentID;
 	string firstName;
 	string lastName;
-	string emailAddress;
+	string email;
 	int age;
-	int daysInCourse1;
-	int daysInCourse2;
-	int daysInCourse3;
-	string degreeType;
+	int days[3];
+	Degree degreeType;
 
 };
 

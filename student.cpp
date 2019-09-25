@@ -6,89 +6,90 @@ using namespace std;
 #include "student.h"
 
 //mutators (or setters)
-void student::SetStudentID(string studentIDToSet) {
-	studentID = studentIDToSet;
+void Student::SetStudentID(string studentID) {
+	studentID = studentID;
 	return;
 }
 
-void student::SetFirstName(string firstNameToSet) {
-	firstName = firstNameToSet;
+void Student::SetFirstName(string firstName) {
+	firstName = firstName;
 	return;
 }
 
-void student::SetLastName(string lastNameToSet) {
-	lastName = lastNameToSet;
+void Student::SetLastName(string lastName) {
+	lastName = lastName;
 	return;
 }
 
-void student::SetEmailAddress(string emailAddressToSet) {
-	emailAddress = emailAddressToSet;
+void Student::SetEmailAddress(string email) {
+	email = email;
 	return;
 }
 
-void student::SetAge(int ageToSet) {
-	age = ageToSet;
+void Student::SetAge(int age) {
+	age = age;
 	return;
 }
 
-void student::SetNumDayCompCrs(int numberOfDaysToCompleteCourse) {
-	numDayCompCrs = numberOfDaysToCompleteCourse;
+void Student::SetNumDayCompCrs(int* days) {
+	days = days;
 	return;
 }
 
-void student::SetDegreeType(string degreeTypeToSet) {
-	degreeType = degreeTypeToSet;
+void Student::SetDegreeType(Degree degreeType) {
+	degreeType = degreeType;
 	return;
 }
 
 //accessors (or getters)
-string student::GetStudentID() const {
+string Student::GetStudentID() const {
 	return studentID;
 }
 
-string student::GetFirstName() const {
+string Student::GetFirstName() const {
 	return firstName;
 }
 
-string student::GetLastName() const {
+string Student::GetLastName() const {
 	return lastName;
 }
 
-string student::GetEmailAddress() const {
+string Student::GetEmailAddress() const {
 	return emailAddress;
 }
 
-int student::GetAge() const {
+int Student::GetAge() const {
 	return age;
 }
 
-int student::GetnumDayCompCrs() const {
-	return numDayCompCrs;
+int Student::GetNumDayCompCrs() const {
+	return days;
 }
 
-string student::GetDegreeType() const {
+Degree student::GetDegreeType() const {
 	return degreeType;
 }
 
-//constructor
-student::student() {
-	studentID = "00";
-	firstName = "no name";
-	lastName = "no name";
-	emailAddress = "no email";
-	age = 0;
-	int* numDayCompCrs[10] = {};
-	degreeType = "default";
+Student::Student(string studentID, string firstName, string lastName, string email, int age, int* days, Degree degreeType) {
+	studentID = studentID;
+	firstName = firstName;
+	lastName = lastName;
+	email = email;
+	age = age;
+	SetNumDayCompCrs(days);
+	degreeType = degreeType;
 	return;
 }
 
-virtual void student::print(); {
-	cout << " " << endl;
-
+virtual void Student::print(); {
+	//  1[tab] First Name : John[tab] Last Name : Smith[tab]
+	//	Age : 20[tab]daysInCourse : {35, 40, 55} Degree Program : Security.
+	cout << "\tFirst Name : \t" << firstName << "Last Name : \t" << lastName <<
+		"Age : \t" << age << "Days In Course : \t" << days << "Degree Program : " << degreeType << endl;
 	return;
 }
 
-virtual void student::getDegreeProgram() {
+virtual void Student::getDegreeProgram() {
 	// 2f from instructions
 	// left blank to be overiden by other functions of subclasses 
 	//       NetworkStudent, SecurityStudent, and SoftwareStudent
@@ -96,7 +97,7 @@ virtual void student::getDegreeProgram() {
 }
 
 //destructor
-student::~student() {
+Student::~Student() {
 	delete classRosterArray;
 	return;
 }

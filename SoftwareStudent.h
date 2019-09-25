@@ -1,17 +1,10 @@
 #pragma once
-#include <iostream>
-#include <string>
-using namespace std;
-
-#include "degree.h"
 #include "student.h"
 
-class student::SoftwareStudent {
+class Student::SoftwareStudent {
 public:
-	void setDegreeType(string toSetDegreeType);
-	string GetDegreeType() const;
-	virtual getDegreeProgram();
+	virtual Degree getDegreeProgram();
 
 private:
-	string degreeType;
+	Degree degreeType = SOFTWARE;
 };

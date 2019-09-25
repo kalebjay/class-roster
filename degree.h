@@ -1,9 +1,6 @@
-#include <iostream>
-using namespace std;
+#pragma once
 
-#include "student.h"
-
-enum degree {SECURITY, NETWORKING, SOFTWARE};
+enum Degree {SECURITY, NETWORKING, SOFTWARE};
 
 
 

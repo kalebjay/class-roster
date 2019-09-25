@@ -9,7 +9,7 @@ using namespace std;
 #include "NetworkStudent.h"
 #include "SoftwareStudent.h"
 
-class roster {
+class Roster {
 public:
 	void add(string studentID, string firstName, string lastName, string emailAddress, 
 		int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeType);
@@ -18,13 +18,8 @@ public:
 	void printDaysInCourse(string studentID);
 	void printInvalidEmails();
 	void printByDegreeProgram(int degreeProgram);
-
-private:
-	char* classRosterArray;
-
-
-
-
+	Student* classRosterArray[5] = { nullptr };
+	~Roster();
 };
 
 
