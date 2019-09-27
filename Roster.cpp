@@ -1,3 +1,8 @@
+/*C867 Scripting and Programming - Applications
+Kaleb Chatland
+Student ID: 000984351
+kchatla@wgu.edu
+*/
 #pragma
 #include <iostream>
 #include <string>
@@ -10,29 +15,42 @@ using namespace std;
 #include "SoftwareStudent.h"
 #include "Roster.h"
 
-void roster::add(string studentID, string firstName, string lastName, string emailAddress, 
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, 
 	int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeType) {
 	//needs to set the instance variables from part D1 and updates the roster.
 	//switch or if for Degree to create 
 	// create for loop that goes through the size of the classRosterArray and if null ptr do security student for SECURITY etc
 	// default, convert days in course from array to 3 integers, 
-
+	int days[] = { daysInCourse1, daysInCourse2, daysInCourse3 };
+	if (degree == Degree::NETWORKING) {
+		classRosterArray[] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, days, degreeType);
+	}
+	if (degree == Degree::SECURITY) {
+		classRosterArray[] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, days, degreeType);
+	}
+	if (degree == Degree::SOFTWARE) {
+		classRosterArray[] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, days, degreeType);
+	}
 	return;
 }
 
-void roster::remove(string studentID) {
+void Roster::remove(string studentID) {
 	//removes students from the roster by student ID. If the student ID does not exist, 
 	//the function prints an error message indicating that the student was not found.
-	if () {
-		delete studentID;
+	for (int i = 0, i < sizeof(classRosterArray), i++) {
+		if (classRosterArray[i] != NULL) {
+			if (studentID == classRosterArray[i]->GetStudentID()) {
+				classRosterArray[i] = nullptr;
+			}
+		}
+		else {
+			cout << "Error, Student ID: " << studentID << "not found.";
+		}
+		return;
 	}
-	else {
-		cout << "Error, Student ID: " << studentID << "not found.";
-	}
-	return;
 }
 
-void roster::printAll() {
+void Roster::printAll() {
 	/*loop that prints every student, calls print function on each student
 	prints a complete tab-separated list of student data using accessor functions 
 	with the provided format: 
@@ -40,36 +58,51 @@ void roster::printAll() {
 	The printAll() function should loop through all  the students in classRosterArray 
 	and call the print() function for each student.
 	*/
+	cout << "Roster of Students" << endl;
 	for (int i = 0, i < sizeof(classRosterArray), i++) {
-		student.print();
+		(*classRosterArray[i]).print();
 	}
 
 	return;
 }
 
-void roster::printDaysInCourse(string studentID) {
+void Roster::printDaysInCourse(string studentID) {
 	//correctly prints a student’s average number of days in the three courses. 
 	//The student is identified by the studentID parameter.
+	for (int i = 0, i < sizeof(classRosterArray), i++) {
+		if (studentID == (*classRosterArray[i]).GetStudentID()) {
+			int avg = 0;
+			avg = (days[0] + days[1] + days[2]) /3;
+			cout << "Student ID: " << studentID << " Average number of days for 3 courses:" << avg << endl;
+		}
+	}
 	return;
 }
 
-void roster::printInvalidEmails() {
+void Roster::printInvalidEmails() {
 	//verifies student email addresses and displays all invalid email addresses to the user
     //Note: A valid email should include an at sign ('@') and period ('.') and should not include a space (' ').
-	if () {
-
+	cout << "Invalid Emails: " << endl;
+	for (int i = 0, i < sizeof(classRosterArray), i++) {
+		string email = "";
+		email = (*classRosterArray[i]).getEmailAddress();
+		if (email.find('@') == std::string::npos) {
+			cout << email;
+		}
+		else if (email.find('.') == std::string::npos) {
+			cout << email;
+		}
+		else if (email.find(' ') != std::string::npos) {
+			cout << email;
+		}
+		else {
+			cout << "No invalid emails found" << endl;
+		}
+		return;
 	}
-	else if{
-
-	}
-	else {
-
-	}
-
-	return;
 }
 
-void roster::printByDegreeProgram(int degreeProgram) {
+void Roster::printByDegreeProgram(Degree degreeType) {
 	//prints out student information for a degree program specified by an enumerated type
 
 	return;

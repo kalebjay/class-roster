@@ -98,8 +98,8 @@ virtual void Student::getDegreeProgram() {
 
 //destructor
 Student::~Student() {
-	delete classRosterArray;
-	return;
+	
+	
 }
 
 
